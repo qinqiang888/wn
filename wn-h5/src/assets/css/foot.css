@@ -1,0 +1,17 @@
+.foot{
+    position: fixed;
+    background: rgba(134, 143, 134, 0.78);
+    bottom: 0px;
+    left:0px;
+    height: 40px;
+    line-height: 40px;
+    color:#fff;
+    width:100%;
+}
+.el-button--text {
+    border: none;
+    background: 0 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding: 0;
+}
