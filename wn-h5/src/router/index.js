@@ -6,6 +6,8 @@ import Person from '@/pages/Person'
 import Detail from '@/pages/Detail'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
+import Course from '@/pages/Course'
+import Order from '@/pages/Order'
 
 Vue.use(Router)
 
@@ -40,6 +42,16 @@ export default new Router({
       path: '/Register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: '/Course',
+      name: 'Course',
+      component: Course
+    },
+    {
+      path: '/Order',
+      name: 'Order',
+      component: Order
     }
   ]
 })

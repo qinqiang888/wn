@@ -56,19 +56,19 @@ export default {
       banner:[
         {
           name:'one',
-          path:'/wn-career/wn-h5/src/assets/one.jpg'
+          path:'wn-career/wn-h5/src/assets/one.jpg'
         },
         {
           name:'two',
-          path:'/wn-career/wn-h5/src/assets/two.jpg'
+          path:'wn-career/wn-h5/src/assets/two.jpg'
         },
         {
           name:'three',
-          path:'/wn-career/wn-h5/src/assets/three.jpg'
+          path:'wn-career/wn-h5/src/assets/three.jpg'
         },
         {
           name:'four',
-          path:'/wn-career/wn-h5/src/assets/four.jpg'
+          path:'wn-career/wn-h5/src/assets/four.jpg'
         }
         ]
     }
@@ -93,11 +93,13 @@ ul {
   list-style-type: none;
   padding: 0;
 }
+.el-button{
+    margin:10px 1px;
+}
 li{
   list-style:none;
   float:left;
   display: inline-block;
-  margin: 0 5px;
 }
 .profession{
     color:#ff6f84;
