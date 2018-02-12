@@ -1,6 +1,6 @@
 .foot{
     position: fixed;
-    background: rgba(134, 143, 134, 0.78);
+    background: rgba(64, 158, 255,0.6);
     bottom: 0px;
     left:0px;
     height: 40px;
@@ -14,4 +14,6 @@
     padding-left: 0;
     padding-right: 0;
     padding: 0;
+    /* color:#409EFF; */
+    /* color:#409EFF */
 }

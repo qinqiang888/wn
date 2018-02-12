@@ -26,17 +26,17 @@
   <el-row class="re_title"><span>每日推荐</span></el-row>
   <div class="recomend">
   <ul>
-    <li class="bor_rt" v-for="item in 4" :key="item">
-    <router-link to="/Detail">
+    <li class="bor_rt" v-for="(item,index) in teachList" :key="index" data-userId="item.userId">
+    <router-link :to="'/Detail/'+item.userId">
     <div class="index_icon1">
-    <img src="../assets/touxiang.jpg">
+    <img :src="item.headPic">
     </div>
     <div class="index_icor1">
-    <b style="font-size:20px">李霞</b>
-    <b>第一视频Java高级经理</b>
+    <b style="font-size:16px">{{item.userName}}</b>
+    <b>{{item.company}}</b><b>{{item.position}}</b>
     <p><span>擅长:&nbsp&nbsp</span>java,职业规划</p>
     </div>
-    </router-link>
+   </router-link>
     </li>
   </ul>
   </div>
@@ -49,32 +49,91 @@
 <script>
 import cFooter from '../components/Footer.vue'
 export default {
-  name: 'HelloWorld',
   data () {
     return {
       msg: '首页',
+      pageNo:'1',
+      pageSize:'4',
+      isScroll:'true',
+      totalPage:'',
+      teachList:'',
       banner:[
         {
           name:'one',
-          path:'wn-career/wn-h5/src/assets/one.jpg'
+          path:'http://www.yihu365.com/images/footertu.png'
         },
         {
           name:'two',
-          path:'wn-career/wn-h5/src/assets/two.jpg'
+          path:'http://www.yihu365.com/images/footertu.png'
         },
         {
           name:'three',
-          path:'wn-career/wn-h5/src/assets/three.jpg'
+          path:'http://www.yihu365.com/images/footertu.png'
         },
         {
           name:'four',
-          path:'wn-career/wn-h5/src/assets/four.jpg'
+          path:'http://www.yihu365.com/images/footertu.png'
         }
         ]
     }
   },
   components:{
     cFooter
+  },
+  methods:{
+    //获取老师列表
+    getHelperList(pageNo){
+      let pageSize=this.pageSize
+      let _this=this;
+      let dt={
+          data:JSON.stringify({
+              function:'getHelperList',
+              pageNo:pageNo.toString(),
+              pageSize:pageSize
+          })
+      }
+      this.$api.getHelperList(dt)
+        .then(res =>{
+          if(res.code=="0000"){
+              console.log(res)
+              _this.teachList=res.data.list;
+              // _this.totalPage=res.totalPage
+          }else{
+           this.$message.error(res.msg); 
+          }
+      })
+      .catch(error=>{
+            return false
+        })
+    },
+    Scroll(){
+      let _this=this
+      window.onscroll = function () {
+        console.log(1111)
+        return
+        var top = document.documentElement.scrollTop || document.body.scrollTop;
+        if (_this.isScroll && _this.pageNo < _this.totalPage) {
+            // if (wh + top >= listHeight) {
+            if (document.body.scrollTop + window.innerHeight >= document.body.offsetHeight) {
+                /*var load = document.createElement('div');
+                  load.className = 'dropload-down';
+                  load.innerHTML = '<div class="dropload-load">已暂无数据</div>';
+                  target.appendChild(load);*/
+                _this.pageNo++;
+                _this.isScroll = false;
+                // target.appendChild(load);
+                setTimeout(function () {
+                    _this.getHelperList(_this.pageNo++);
+                }, 800);
+            }
+        }
+    }
+    },
+  },
+  created(){
+    this.getHelperList(1)
+    this.Scroll()
+    document.title="蜗牛生涯"
   }
 }
 </script>
@@ -94,7 +153,7 @@ ul {
   padding: 0;
 }
 .el-button{
-    margin:10px 1px;
+    margin:20px 0px;
 }
 li{
   list-style:none;
@@ -102,7 +161,7 @@ li{
   display: inline-block;
 }
 .profession{
-    color:#ff6f84;
+    color:#409eff;
 }
 
 </style>

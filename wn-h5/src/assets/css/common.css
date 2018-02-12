@@ -1,7 +1,10 @@
-*{
+h1, h2, h3, h4, h5, h6,p,ul,li,span{
     margin:0;
     padding:0;
+    font-weight: normal;
 }
+body, textarea, input, button, select, keygen, legend{font:14px "Microsoft YaHei", Verdana, "宋体", sans-serif; font-weight: normal; outline: 0;}
+header, footer, section, article, aside, nav, address, figure, figcaption, menu, details {display:block;}
 a{
     text-decoration: none;
 }
@@ -13,7 +16,10 @@ a{
     color:#fff;
 }
 .profession{
-    color:#ff6f84;
+    color:#409eff;
+}
+.el-header{
+    padding: 0px;
 }
 .recomend li{
     float: left;
@@ -28,6 +34,9 @@ a{
     top: 5px;
     border-radius: 50%;
 
+}
+.el-form-item{
+    margin-bottom: 22px;
 }
 .index_icor1 {
     margin: 0 20px 0 85px;
@@ -63,20 +72,15 @@ a{
     width: 60px;
     text-align: left
 }
-
+.el-button{
+   /* color:#fff; */
+  }
   .block img{
     width:100%;
     height:100%;
   
   }
-  .el-header {
-      background-color: #B3C0D1;
-      color: #333;
-      height:150px;
-      padding: 0;
-      margin:0;
-      
-    }
+
     .el-main{
       padding:0;
       margin:0;
@@ -102,5 +106,40 @@ a{
        background-color: #d3dce6;
     }
     .el-button--text{
-        color:#ff6f84;
+        /* color:#ff6f84; */
+        color:#409EFF;
+    }
+    .el-dialog{
+        width:80%;
+        border-radius:5px;
+      }
+      .el-dialog__body{
+        text-align:left;
+        padding: 10px 20px;
+      }
+      .el-dialog__footer{
+          text-align: center
+      }
+      .login{
+        margin:40% 20px;
+        height:300px;
+        font-size:14px;
+        
+    }
+    .info{
+        margin:10px 20px;
+        height:300px;
+        font-size:14px;
+        
+    }
+      
+      /* 输入框 */
+      .login-info{
+        height: 40px;
+      line-height:50px;
+    
+    }
+    .login-info img{
+        width:20px;
+        height:20px;
     }

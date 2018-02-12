@@ -2,8 +2,8 @@
   <div class="hello">
       <el-row class="foot">
        <el-col :span="8"><router-link to='/'><el-button type="text" icon="el-icon-home">首页</el-button></router-link></el-col>
-      <el-col :span="8"><router-link to='List'><el-button type="text" icon="el-icon-search">找师</el-button></router-link></el-col>
-      <el-col :span="8"><router-link to='Person'><el-button type="text" icon="el-icon-edit">我的</el-button></router-link></el-col>
+      <el-col :span="8"><router-link to='/List'><el-button type="text" icon="el-icon-search">找师</el-button></router-link></el-col>
+      <el-col :span="8"><router-link to='/Person'><el-button type="text" icon="el-icon-edit">我的</el-button></router-link></el-col>
       </el-row>
     </div>
 </template>

@@ -8,9 +8,17 @@ import Login from '@/pages/Login'
 import Register from '@/pages/Register'
 import Course from '@/pages/Course'
 import Order from '@/pages/Order'
-
+import PerfectInfo from '@/pages/PerfectInfo'
+import Chat from '@/pages/Chat'
+import Certification from '@/pages/Certification'
+import OrderList from '@/pages/OrderList'
+import OrderDetail from '@/pages/OrderDetail'
+import BackInfo from '@/pages/BackInfo'
+import AboutMe from '@/pages/AboutMe'
+import Accout from '@/pages/Accout'
+import PayType from '@/pages/PayType'
+import RegisterTeach from '@/pages/RegisterTeach'
 Vue.use(Router)
-
 export default new Router({
   routes: [
     {
@@ -29,7 +37,7 @@ export default new Router({
       component: Person
     },
     {
-      path: '/Detail',
+      path: '/Detail/:id',
       name: 'Detail',
       component: Detail
     },
@@ -44,7 +52,7 @@ export default new Router({
       component: Register
     },
     {
-      path: '/Course',
+      path: '/Course/:id',
       name: 'Course',
       component: Course
     },
@@ -52,6 +60,56 @@ export default new Router({
       path: '/Order',
       name: 'Order',
       component: Order
-    }
+    },
+    {
+      path: '/PerfectInfo',
+      name: 'PerfectInfo',
+      component: PerfectInfo
+    },
+    {
+      path: '/Certification',
+      name: 'Certification',
+      component: Certification
+    },
+    {
+      path: '/Chat',
+      name: 'Chat',
+      component: Chat
+    },
+    {
+      path: '/OrderList',
+      name: 'OrderList',
+      component: OrderList
+    },
+    {
+      path: '/OrderDetail',
+      name: 'OrderDetail',
+      component: OrderDetail
+    },
+    {
+      path: '/BackInfo',
+      name: 'BackInfo',
+      component: BackInfo
+    },
+    {
+      path: '/AboutMe',
+      name: 'AboutMe',
+      component: AboutMe
+    },
+    {
+      path: '/Accout',
+      name: 'Accout',
+      component: Accout
+    },
+    {
+      path: '/PayType',
+      name: 'PayType',
+      component: PayType
+    },
+    {
+      path: '/RegisterTeach',
+      name: 'RegisterTeach',
+      component: RegisterTeach
+    },
   ]
 })

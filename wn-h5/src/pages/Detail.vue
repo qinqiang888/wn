@@ -1,42 +1,46 @@
 <template>
   <div class="">
   <el-row>
-  <el-col class="detailhead"><img src="../../static/images/zhuanjia.jpg"></img></el-col>
-    <el-col :span="24" class="headInfo"><h4>盖伟伟</h4><h5>美团酒店事业部技术专家</h5></el-col>
+  <el-col class="detailhead"><img :src="DetailInfo.headPic"></img></el-col>
+    <el-col :span="24" class="headInfo"><h4>{{DetailInfo.userName}}</h4><h5>{{DetailInfo.company}}{{DetailInfo.position}}</h5></el-col>
 </el-row>
 </el-row>
 <el-row class="pingjia">
-  <el-col :span="8">好评率100%</el-col>
-  <el-col :span="8">已服务26次</el-col>
+  <el-col :span="8">好评率{{DetailInfo.evaluationRate*100}}%</el-col>
+  <el-col :span="8">已服务{{DetailInfo.serviceCount}}次</el-col>
   <el-col :span="8">北京</el-col>
 </el-row>
 <el-row class="line">
   <el-col :span="24"></el-col>
 </el-row>
 <el-row class="answer">
-<el-row v-for="item in 3" :key="item">
-  <el-col :span="8">简答一：</el-col>
-  <el-col :span="8">语音</el-col>
-  <el-col :span="8">视频</el-col>
+<router-link v-for="(item,index) in DetailInfo.serviceList" :key="index" :to="'/Course/'+item.id">
+<el-row >
+  <el-col :span="8">{{item.name}}</el-col>
+  <el-col :span="8">{{item.meetType}}</el-col>
+  <el-col :span="8">{{item.price}}</el-col>
 </el-row>
+</router-link>
 </el-row>
-<el-row class="line">
+<el-row class="line" v-if=" DetailInfo.serviceList&&DetailInfo.serviceList.length>0">
   <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
 </el-row>
 <el-row class="answer">
-<el-row  v-for="item in 3" :key="item" >
-  <el-col :span="8">职位一：</el-col>
-  <el-col :span="8">java高级工程师</el-col>
-  <el-col :span="8">北京</el-col>
+<router-link v-for="(item,index) in DetailInfo.positionList" :key="index" :to="'/Course/'+item.id" >
+<el-row>
+  <el-col :span="8">{{item.name}}</el-col>
+  <el-col :span="8">{{item.company}}</el-col>
+  <el-col :span="8">{{item.monthmoney}}</el-col>
 </el-row>
+</router-link>
 </el-row>
-<el-row class="line">
+<el-row class="line" v-if="DetailInfo.positionList&& DetailInfo.positionList.length>0">
   <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
 </el-row>
 <el-row class="introduce">
   <h4>老师介绍</h4>
   <el-col :span="24"><div class="grid-content bg-purple-dark"></div>
-  <p>我毕业于清华大学，先后在国有大型ERP研发中心，和百度担任JAVA工程师，数据库工程师超过8年，擅长大型web系统架构，数据库架构，曾负责过亿级数据的存储，以及百度客户数据仓库的设计，希望我的经验能帮助到你。</p>
+  <p>{{DetailInfo.introduction}}</p>
   </el-col>
 </el-row>
  <c-footer></c-footer>
@@ -48,8 +52,41 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: '老师详情'
+      msg: '老师详情',
+      serviceId:this.$route.params.id,
+      DetailInfo:''
+      
     }
+  },
+  methods:{
+    getHelperDetail(){
+      let _this=this;
+      let dt={
+        data:JSON.stringify({
+          function:'getHelperDetailInfo',
+          userId:this.serviceId,
+          token:localStorage.token
+        })
+      }
+      this.$api.getHelperDetail(dt)
+        .then(res => {
+            if(res.code=="0000") {
+              _this.DetailInfo=res.data
+            }else if(res.code=="0001"){
+               this.$router.push("/Login")
+            } else{
+              _this.$message.error(res.msg);
+            }
+        })
+        .catch(error => {
+            console.log('error')
+        })
+    }
+  },
+  created(){
+    console.log(this.serviceId)
+    this.getHelperDetail()
+    document.title="老师详情"
   }
 }
 </script>
@@ -68,7 +105,7 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  color: #fff;
 }
 .detailhead {
   height:150px;
@@ -88,13 +125,13 @@ a {
   font-size:14px;
   height:40px;
   line-height:40px;
-  color:#ff6f84;
+  color:#409eff;
 }
 .answer{
   color:#fff;
 }
 .answer .el-row{
-  background:#ff6f84;
+  background:#409eff;
   height:40px;
   line-height:40px;
   margin:5px 10px;

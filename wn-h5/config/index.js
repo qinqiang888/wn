@@ -11,13 +11,14 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api': {
-        target: 'http://www.woniucareer.com:8081',//设置调用的接口域名和端口号 别忘了加http http://
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''
-        }
-      }
+      // '/api': {
+      //   // target: 'http://www.woniucareer.com:8081',//设置调用的接口域名和端口号 别忘了加http http://
+      //   target: 'http://120.92.110.2:8082',//设置调用的接口域名和端口号 别忘了加http http://
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     '^/api': ''
+      //   }
+      // }
     },
 
     // Various Dev Server settings
